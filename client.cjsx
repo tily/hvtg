@@ -1,14 +1,18 @@
 require('./client.css')
 $ = require('jquery')
 React = require('react/addons')
+Navbar = require('react-bootstrap').Navbar
+Nav = require('react-bootstrap').Nav
 Button = require('react-bootstrap').Button
 Input = require('react-bootstrap').Input
+Glyphicon = require('react-bootstrap').Glyphicon
 window.html2canvas = html2canvas = require('html2canvas')
 
 App = React.createClass
   mixins: [React.addons.LinkedStateMixin]
 
   getDefaultProps: ()->
+    sources: ['file', 'url']
     fontFamilies: [
       '', 'ヒラギノ明朝 ProN W6', 'HiraMinProN-W6', 'HG明朝E', 'ＭＳ Ｐ明朝', 'MS PMincho', 'MS 明朝', 'serif'
       'メイリオ', 'Meiryo', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'ＭＳ Ｐゴシック', 'MS P Gothic'
@@ -27,6 +31,7 @@ App = React.createClass
     ]
 
   getInitialState: ()->
+    source: 'url'
     scale: '920x640'
     title: 'S.L.A.C.K.'
     fontSize: '180px'
@@ -34,11 +39,13 @@ App = React.createClass
     fontColor: 'white'
     backgroundSize: '100% 100%'
     imageUrl: 'https://farm4.staticflickr.com/3460/3754201159_669b929e6c_o.jpg'
+    dataUrl: 'none'
     showingResult: false
     lineHeight: '1.0em'
     fontFamily: 'Pacifico'
     customFont: true
     fontCssUrl: 'http://fonts.googleapis.com/css?family=Pacifico'
+    textShadow: ''
 
   handleClickConvert: (event)->
     console.log '[app] handleClickConvert, state=', @state
@@ -48,6 +55,12 @@ App = React.createClass
         $(React.findDOMNode(@refs.download)).attr
           href: canvas.toDataURL()
           download: 'apple-touch-startup-image-' + @state.scale + '.png'
+
+  handleFile: (event)->
+    reader = new FileReader
+    file = event.target.files[0]
+    reader.onload = (upload)=> @setState dataUrl: upload.target.result
+    reader.readAsDataURL(file)
 
   handleChange: (stateKey)->
     (newValue)=>
@@ -64,13 +77,32 @@ App = React.createClass
     $('head link').attr(href: @state.fontCssUrl)
 
     <div className='container'>
-      <div className='row'>
-        <div className='col-sm-2'>
-          <p style={backgroundColor: 'yellow', marginTop: '20px', marginBottom: '10px', fontWeight: 'bold'}>
-            H V T G
-          </p>
+      <div className="row" style={marginTop:'20px'}>
+        <div className='col-sm-2' style={
+          backgroundColor:'yellow',
+          fontWeight:'bold',
+          paddingTop:'9px',
+          paddingBottom:'9px',
+          color:'transparent',
+          textShadow: '0 0 0 rgba(0,0,0,0.9), .25em 0 0 rgba(0,0,0,0.5), -.25em 0 0 rgba(0,0,0,0.5);'
+        }>
+          H V T G
+        </div>
+        <div className='col-sm-10'>
           <form>
-            <Input type='file' label='File' placeholder='Pick a image ...' valueLink={@valueLink('file')} />
+            <Button onClick={@handleClickConvert} disabled={@state.showingResult}>
+              Convert to Image
+            </Button>
+            &nbsp;
+            <a className='btn btn-default' ref='download' href='#' disabled={!@state.showingResult}>
+              <Glyphicon glyph='download-alt' />
+            </a>
+          </form>
+        </div>
+      </div>
+      <div className="row" style={marginTop:'20px'}>
+        <div className='col-sm-2'>
+          <form>
             <Input type='textarea' label='Title' placeholder='Title ...' valueLink={@valueLink('title')} />
             <Input type='text' label='Font Size' placeholder='Font Size ...' valueLink={@valueLink('fontSize')} />
             <Input type='text' label='Font Color' placeholder='Font Color ...' valueLink={@valueLink('fontColor')} />
@@ -100,8 +132,20 @@ App = React.createClass
               }
             </Input>
             <Input type='text' label='Font CSS URL' placeholder='Font CSS URL ...' valueLink={@valueLink('fontCssUrl')} />
+            <Input type='text' label='Text Shadow' placeholder='Text Shadow ...' valueLink={@valueLink('textShadow')} />
             <hr />
-            <Input type='text' label='Image URL' placeholder='Image URL ...' valueLink={@valueLink('imageUrl')} />
+            <Input type='select' label='Source' placeholder='Source ...' valueLink={@valueLink('source')}>
+              {
+                @props.sources.map (source)=>
+                  <option key={source} value={source}>{source}</option>
+              }
+            </Input>
+            {
+               if @state.source == 'file' 
+                 <Input type='file' label='File' placeholder='Pick a image ...' onChange={@handleFile} />
+               else
+                 <Input type='text' label='Image URL' placeholder='Image URL ...' valueLink={@valueLink('imageUrl')} />
+            }
             <Input type='select' label='Scale' valueLink={@valueLink('scale')}>
               {
                 @props.scales.map (scale)=>
@@ -116,19 +160,7 @@ App = React.createClass
             </Input>
           </form>
         </div>
-        <div className='col-sm-10'>
-          <p style={marginTop: '20px', marginBottom: '10px'}>
-            <Button onClick={@handleClickConvert} disabled={@state.showingResult}>
-              Convert to Image
-            </Button>
-            &nbsp;
-            {
-              if @state.showingResult
-                <span>This is Image (<a ref="download">download</a>)</span>
-              else
-                <span>This is <strong>NOT</strong> Image</span>
-            }
-          </p>
+        <div className="col-sm-10">
           <div ref='preview' style={
             display: if @state.showingResult then 'none' else 'flex'
             justifyContent: 'center'
@@ -137,21 +169,17 @@ App = React.createClass
             lineHeight: @state.lineHeight
             width: @state.scale.split('x')[0]
             height: @state.scale.split('x')[1]
-            backgroundImage: 'url("/image.png?url=' + encodeURIComponent(@state.imageUrl) + '")'
+            backgroundImage: if @state.source == 'file' then 'url("' + @state.dataUrl + '")' else 'url("/image.png?url=' + encodeURIComponent(@state.imageUrl) + '")'
             backgroundSize: @state.backgroundSize
             color: @state.fontColor
             fontFamily: @state.fontFamily
             fontSize: @state.fontSize
             fontWeight: @state.fontWeight
             fontStyle: @state.fontStyle
+            textShadow: @state.textShadow
           }>
-            <div dangerouslySetInnerHTML={ __html: @state.title.replace /\n/g, ()-> "<br />"}
-            />
+            <div dangerouslySetInnerHTML={ __html: @state.title.replace /\n/g, ()-> "<br />"} />
           </div>
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-sm-12">
           <div ref='result' style={display: if @state.showingResult then 'block' else 'none'}></div>
         </div>
       </div>
