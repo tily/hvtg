@@ -1,0 +1,36 @@
+{
+  "name": "hhpvlatsig",
+  "version": "1.0.0",
+  "description": "* background-image * background-size * text  * font-family * convert to canvas",
+  "main": "index.js",
+  "scripts": {
+    "start": "coffee server.coffee",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^3.3.4",
+    "browserify": "^10.2.3",
+    "browserify-css": "^0.6.1",
+    "coffee-reactify": "^3.0.0",
+    "coffee-script": "^1.9.3",
+    "express": "^4.12.4",
+    "fs-extra": "^0.18.4",
+    "gulp": "^3.8.11",
+    "gulp-if": "^1.2.5",
+    "gulp-jade": "^1.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-streamify": "0.0.5",
+    "gulp-uglify": "^1.2.0",
+    "gulp-util": "^3.0.5",
+    "html2canvas": "^0.5.0-alpha2",
+    "jquery": "^2.1.4",
+    "lodash": "^3.9.3",
+    "react": "^0.13.3",
+    "react-bootstrap": "^0.23.0",
+    "request": "^2.56.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.2.1"
+  }
+}
