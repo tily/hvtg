@@ -1,1 +1,42 @@
 @import "node_modules/bootstrap/dist/css/bootstrap.css";
+.hvtg-display-flex {
+  display: flex;
+  display: -webkit-flex;
+}
+.hvtg-display-block {
+  display: block;
+  display: block;
+}
+.hvtg-display-none {
+  display: none;
+}
+.navbar-default a,
+.navbar-default a:hover,
+.navbar-default a:visited,
+.navbar-default a:active {
+  font-weight: bold;
+  color: black !important;
+}
+
+.drawer {
+  z-index: 1;
+  top: 50px;
+  position: absolute;
+  width: 100px;
+}
+.drawer-enter {
+  left: -100px;
+  transition: 1.5s;
+  -webkit-transition: 1.5s;
+}
+.drawer-enter.drawer-enter-active {
+  left: 0px;
+}
+.drawer-leave {
+  left: 0px;
+  transition: 1.5s;
+  -webkit-transition: 1.5s;
+}
+.drawer-leave.drawer-leave-active {
+  left: -100px;
+}

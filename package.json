@@ -13,6 +13,7 @@
     "bootstrap": "^3.3.4",
     "browserify": "^10.2.3",
     "browserify-css": "^0.6.1",
+    "classnames": "^2.1.2",
     "coffee-reactify": "^3.0.0",
     "coffee-script": "^1.9.3",
     "express": "^4.12.4",

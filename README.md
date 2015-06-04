@@ -1,34 +1,29 @@
 # H V T G
 
-HIPHOP Video Title Generator.
+HIPHOP Video Title Generator.  
+Check this out: https://hvtg.herokuapp.com
 
-## TODO
+## Tasks
 
-* rotate
-* text-shadow
-* リンク対応
-* windows + chrome バグ修正
+* 一度 convert to image すると元の画像サイズに戻ってしまう
+* Preview のカラムの縦幅が無駄に広くなってしまう
+  * height: auto?
+* navbar 固定したら隠れてしまう部分ができてしまった
+* iPhone で触れるぐらいのテキスト入力少な目に
 
-## HISTORY
+* transform rotate 対応
+* transform scale させるやつをちゃんとする
+* パラメーター対応
+  * 保存しておきたい、localstorage とかいいかも
+* ブラウザでのダウンロード
+* temporary + URL へ変換するやつかな
+* convert ボタンではなく a リンククリック時に変換してダウンロードさせる
+* 引用をシングルクオートに統一
 
-* v0.0.1
-  * 機能追加
-    * リンクからダウンロードが行えるようになった
-      * ダウンロードされるファイルにも適切な名前がつくようになった
-    * 改行が使えるようになった
-    * イタリックが使えるようになった
-    * 明朝体が使えるようになった
-  * リファクタリング
-    * LinkedStateMixin を使うようにした
+### Done
 
-## Transfer
-
-hvtg.herokuapp.com
-
-* heroku:hhpvlatsig へデプロイして動作確認
-* github:hhpvlasig を github:hhpvlatsig にリネーム
-  * ローカルのリポジトリの参照先もあわせて変更
-* heroku:hhpvlasig にリダイレクトリンクを設ける
+* iPhone で webkit-flex がきかない
+  * justifyContent と alignItems にも -webkit をつけたらうまくいった
 
 ## Links
 
@@ -43,3 +38,6 @@ hvtg.herokuapp.com
 * [reactjs - React.jsでFormを扱う - Qiita](http://qiita.com/koba04/items/40cc217ab925ef651113)
 * a タグの download 属性
 * [[CSS]コピペでOK、text-shadowを使ってテキストにさまざまなスタイルを与える全23種類のスタイルシートのまとめ | コリス](http://coliss.com/articles/build-websites/operation/css/css-text-shadow-comilation-by-boltaway.html)
+* [Inline Styles | React](https://facebook.github.io/react/tips/inline-styles.html "Inline Styles | React")
+  * react の style でベンダープレフィクスを使いたい場合は WebkitTransform のように大文字を使う
+* [flexboxの旧仕様、改定仕様、現行仕様の一覧 ≪ LINE Engineers' Blog](http://developers.linecorp.com/blog/?p=2479 "flexboxの旧仕様、改定仕様、現行仕様の一覧 ≪ LINE Engineers' Blog")
