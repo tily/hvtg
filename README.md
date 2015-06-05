@@ -36,3 +36,4 @@ Check this out: https://hvtg.herokuapp.com
 * [flexboxの旧仕様、改定仕様、現行仕様の一覧 ≪ LINE Engineers' Blog](http://developers.linecorp.com/blog/?p=2479 "flexboxの旧仕様、改定仕様、現行仕様の一覧 ≪ LINE Engineers' Blog")
 * [html - Data protocol URL size limitations - Stack Overflow](http://stackoverflow.com/questions/695151/data-protocol-url-size-limitations)
 * [canvas.toDataURL() for large canvas - Stack Overflow](http://stackoverflow.com/questions/16156402/canvas-todataurl-for-large-canvas)
+* [exif-js/exif-js](https://github.com/exif-js/exif-js)
