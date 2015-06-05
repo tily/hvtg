@@ -5,19 +5,10 @@ Check this out: https://hvtg.herokuapp.com
 
 ## Tasks
 
-* 一度 convert to image すると元の画像サイズに戻ってしまう
-* Preview のカラムの縦幅が無駄に広くなってしまう
-  * height: auto?
-* navbar 固定したら隠れてしまう部分ができてしまった
+* Preview のカラムの縦幅が無駄に広くなってしまう(height: auto?)
 * iPhone で触れるぐらいのテキスト入力少な目に
-
 * transform rotate 対応
-* transform scale させるやつをちゃんとする
-* パラメーター対応
-  * 保存しておきたい、localstorage とかいいかも
-* ブラウザでのダウンロード
-* temporary + URL へ変換するやつかな
-* convert ボタンではなく a リンククリック時に変換してダウンロードさせる
+* 一時的に作業データを保存 (local storage?) + URL へ変換
 * 引用をシングルクオートに統一
 
 ### Done
@@ -41,3 +32,5 @@ Check this out: https://hvtg.herokuapp.com
 * [Inline Styles | React](https://facebook.github.io/react/tips/inline-styles.html "Inline Styles | React")
   * react の style でベンダープレフィクスを使いたい場合は WebkitTransform のように大文字を使う
 * [flexboxの旧仕様、改定仕様、現行仕様の一覧 ≪ LINE Engineers' Blog](http://developers.linecorp.com/blog/?p=2479 "flexboxの旧仕様、改定仕様、現行仕様の一覧 ≪ LINE Engineers' Blog")
+* [html - Data protocol URL size limitations - Stack Overflow](http://stackoverflow.com/questions/695151/data-protocol-url-size-limitations)
+* [canvas.toDataURL() for large canvas - Stack Overflow](http://stackoverflow.com/questions/16156402/canvas-todataurl-for-large-canvas)
