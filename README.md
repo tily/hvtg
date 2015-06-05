@@ -5,6 +5,7 @@ Check this out: https://hvtg.herokuapp.com
 
 ## Tasks
 
+* ダウンロードリンク、Data URL のサイズ制限によりブラウザがクラッシュしてしまうことがある
 * Preview のカラムの縦幅が無駄に広くなってしまう(height: auto?)
 * iPhone で触れるぐらいのテキスト入力少な目に
 * transform rotate 対応
