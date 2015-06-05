@@ -109,7 +109,7 @@ App = React.createClass
     imageScale = @imageScale()
 
     target = $(React.findDOMNode(@refs.rightColumn)).width()
-    source = parseInt(@state.scale.split('x')[0])
+    source = parseInt(imageScale.width)
     if target
       scale = target / source
     console.log 'target,source,scale', target, source, scale
