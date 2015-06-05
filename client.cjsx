@@ -41,6 +41,7 @@ App = React.createClass
   getInitialState: ()->
     source: 'url'
     customScale: false
+    originalScale: false
     scale: '920x640'
     title: 'S.L.A.C.K.'
     fontSize: '180px'
@@ -86,18 +87,27 @@ App = React.createClass
     value: @state[stateKey]
     requestChange: @handleChange(stateKey)
 
-  backgroundImage: ()->
+  imageUrl: ()->
     if @state.source == 'file'
-      url = @state.dataUrl 
+      @state.dataUrl 
     else
-      url = '/image.png?url=' + encodeURIComponent(@state.imageUrl)
-    'url("' + url + '")'
+      '/image.png?url=' + encodeURIComponent(@state.imageUrl)
+
+  imageScale: ()->
+    if @state.originalScale
+      width: React.findDOMNode(@refs.original).naturalWidth
+      height: React.findDOMNode(@refs.original).naturalHeight
+    else
+      width: @state.scale.split('x')[0]
+      height: @state.scale.split('x')[1]
 
   inputClassNames: ()->
     labelClassName: 'col-xs-6 col-sm-6'
     wrapperClassName: 'col-xs-6 col-sm-6'
 
   render: ()->
+    imageScale = @imageScale()
+
     target = $(React.findDOMNode(@refs.rightColumn)).width()
     source = parseInt(@state.scale.split('x')[0])
     if target
@@ -147,9 +157,9 @@ App = React.createClass
                 WebkitAlignItems: 'center'
                 textAlign: 'center'
                 lineHeight: @state.lineHeight
-                width: @state.scale.split('x')[0]
-                height: @state.scale.split('x')[1]
-                backgroundImage: @backgroundImage()
+                width: imageScale.width
+                height: imageScale.height
+                backgroundImage: 'url(' + @imageUrl() + ')'
                 backgroundSize: @state.backgroundSize
                 backgroundColor: @state.backgroundColor
                 color: @state.fontColor
@@ -238,6 +248,9 @@ App = React.createClass
               <Input wrapperClassName='col-xs-offset-6 col-xs-6 col-sm-offset-6 col-sm-6' type="checkbox" checkedLink={this.linkState('customScale')}> 
                 Custom Scale
               </Input>
+              <Input wrapperClassName='col-xs-offset-6 col-xs-6 col-sm-offset-6 col-sm-6' type="checkbox" checkedLink={this.linkState('originalScale')}> 
+                Original Scale
+              </Input>
               <Input {...@inputClassNames()} type='select' label='Background Size' placeholder='Background Size ...' valueLink={@valueLink('backgoundSize')}>
                 {
                   @props.backgroundSizes.map (backgroundSize)=>
@@ -249,6 +262,7 @@ App = React.createClass
           </div>
         </div>
       </div>
+      <img ref='original' src={@imageUrl()} style={display:'none'} />
     </div>
 
 $(document).ready ()->
