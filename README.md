@@ -24,6 +24,8 @@ Check this out, yo: https://hvtg.herokuapp.com
 * 保存機能
   * 一時的に作業データを Local Storage とかに保存できるようにしたい
   * 設定項目を location.hash から読み込めるようにしたい
+* バグ
+  * original scale 周り
 * リファクタリング
   * 引用符をシングルクオートに統一する
 
@@ -46,3 +48,4 @@ Check this out, yo: https://hvtg.herokuapp.com
 * [html - Data protocol URL size limitations - Stack Overflow](http://stackoverflow.com/questions/695151/data-protocol-url-size-limitations)
 * [canvas.toDataURL() for large canvas - Stack Overflow](http://stackoverflow.com/questions/16156402/canvas-todataurl-for-large-canvas)
 * [exif-js/exif-js](https://github.com/exif-js/exif-js)
+* [Canvas に描いた画像を png などの形式の Blob に変換する方法: Tender Surrender](https://blog.agektmr.com/2013/09/canvas-png-blob.html)
