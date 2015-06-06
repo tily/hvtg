@@ -45,7 +45,7 @@ App = React.createClass
     originalScale: false
     scale: '920x640'
     title: 'S.L.A.C.K.'
-    fontSize: '180px'
+    fontSize: '25'
     fontWeight: 'bold'
     fontColor: 'white'
     backgroundSize: '100% 100%'
@@ -168,7 +168,7 @@ App = React.createClass
                 backgroundColor: @state.backgroundColor
                 color: @state.fontColor
                 fontFamily: @state.fontFamily
-                fontSize: @state.fontSize
+                fontSize: @state.fontSize + 'vh'
                 fontWeight: @state.fontWeight
                 fontStyle: @state.fontStyle
                 transform: 'scale(' + (scale || 1) + ')'
@@ -186,7 +186,7 @@ App = React.createClass
             <hr style={marginTop: '0px'} />
             <form className='form-horizontal'>
               <Input {...@inputClassNames()} type='textarea' label='Title' placeholder='Title ...' valueLink={@valueLink('title')} />
-              <Input {...@inputClassNames()} type='text' label='Font Size' placeholder='Font Size ...' valueLink={@valueLink('fontSize')} />
+              <Input {...@inputClassNames()} type='number' min=1 max=100 label='Font Size' placeholder='Font Size ...' valueLink={@valueLink('fontSize')} />
               <Input {...@inputClassNames()} type='text' label='Font Color' placeholder='Font Color ...' valueLink={@valueLink('fontColor')} />
               <Input {...@inputClassNames()} type='text' label='Line Height' placeholder='Line Height...' valueLink={@valueLink('lineHeight')} />
               <Input {...@inputClassNames()} type='select' label='Font Weight' placeholder='Background Size ...' valueLink={@valueLink('fontWeight')}>
