@@ -10,10 +10,6 @@ Check this out, yo: https://hvtg.herokuapp.com
     * [iOS6でメガピクセル画像をCanvasに描画するとおかしくなってしまう件と、その対処 - snippets from shinichitomita’s journal](http://d.hatena.ne.jp/shinichitomita/20120927/1348726674)
     * [egashira.jp : JPEGからJavascriptでEXIFのOrientation情報のみを取得する](http://www.egashira.jp/2013/03/obtain-orientation-from-jpeg-exif)
     * [exif-js/exif-js](https://github.com/exif-js/exif-js)
-* ダウンロードボタンを押すと Chrome がクラッシュする
-  * Data URL のサイズ制限が原因 (なぜか iPhone の Safari は大丈夫だった)
-  * Blob URL を使えば解決するのかも 
-    * [javascript - "Aw, Snap" when data uri is too large - Stack Overflow](http://stackoverflow.com/questions/16761927/aw-snap-when-data-uri-is-too-large)
 * Preview のカラムの縦幅が無駄に広くなってしまう
   * 直し方がよく分からない
 * iPhone での使用感が全体的にいまいち
@@ -28,6 +24,14 @@ Check this out, yo: https://hvtg.herokuapp.com
   * original scale 周り
 * リファクタリング
   * 引用符をシングルクオートに統一する
+
+### Done
+
+* ダウンロードボタンを押すと Chrome がクラッシュする
+  * Data URL のサイズ制限が原因 (なぜか iPhone の Safari は大丈夫だった)
+  * Blob URL を使えば解決するのかも 
+    * [javascript - "Aw, Snap" when data uri is too large - Stack Overflow](http://stackoverflow.com/questions/16761927/aw-snap-when-data-uri-is-too-large)
+  * blueimp-canvas-to-blob の browserify 対応版 + window.dataURLtoBlob 関数を使うようにした
 
 ## Links
 
