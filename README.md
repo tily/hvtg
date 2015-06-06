@@ -1,7 +1,7 @@
 # H V T G
 
 HIPHOP Video Title Generator.  
-Check this out: https://hvtg.herokuapp.com
+Check this out, yo: https://hvtg.herokuapp.com
 
 ## Tasks
 
