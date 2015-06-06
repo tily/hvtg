@@ -1,4 +1,5 @@
 require('./client.css')
+require('blueimp-canvas-to-blob')
 $ = require('jquery')
 React = require('react/addons')
 Navbar = require('react-bootstrap').Navbar
@@ -81,6 +82,9 @@ App = React.createClass
     $(document.body).append(node)
     html2canvas(node, logging: true).then (canvas)=>
       $(node).remove()
+      console.log 'converted!,', canvas
+      console.log 'converted!,', window
+      console.log 'converted!,', window.dataURLtoBlob(canvas.toDataURL())
       @setState converted: true, result: canvas
 
   valueLink: (stateKey)->
@@ -139,7 +143,7 @@ App = React.createClass
               &nbsp;
               <a
                 className='btn btn-default'
-                href={if @state.result then @state.result.toDataURL() else '#'}
+                href={if @state.result then URL.createObjectURL(window.dataURLtoBlob(@state.result.toDataURL())) else '#'}
                 disabled={!@state.converted}
                 download={'apple-touch-startup-image-' + @state.scale + '.png'}
                 target='_blank'

@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "blueimp-canvas-to-blob": "git+https://github.com/hugomrdias/JavaScript-Canvas-to-Blob.git",
     "bootstrap": "^3.3.4",
     "browserify": "^10.2.3",
     "browserify-css": "^0.6.1",
